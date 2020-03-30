@@ -1,12 +1,11 @@
-/* eslint-disable no-console */
 
 const express = require('express');
 const path = require('path');
 
 const upload = require('../src/uploadMiddleware');
 const Executor = require('../src/Executor');
-const constants = require('./util/constants');
-const util = require('./util/util');
+const constants = require('../src/constants');
+const util = require('../src/util');
 
 const {
   PATH_IMAGE_STORAGE,

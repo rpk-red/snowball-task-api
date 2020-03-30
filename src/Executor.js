@@ -2,8 +2,8 @@
 const jimp = require('jimp');
 
 const path = require('path');
-const util = require('../routes/util/util');
-const constants = require('../routes/util/constants');
+const util = require('./util');
+const constants = require('./constants');
 
 const { PATH_IMAGE_WATERMARK, ERROR_MESSSAGE_APPEND_LOG, ERROR_MESSAGE_IMAGE_UPLOAD } = constants;
 
