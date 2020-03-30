@@ -10,7 +10,7 @@ const {
   FILE_TYPE_PNG: PNG,
 } = constants;
 
-const formatFileName = (filetype, size) => `image-${Date.now()}-${size}.${filetype}`;
+const formatFileName = (filetype, size) => `image-${Date.now()}-${size.w}x${size.h}.${filetype}`;
 
 const getFileTypeByMimeType = (mimeType) => {
   let filetype = EMPTY_STRING;
@@ -24,13 +24,29 @@ const getFileTypeByMimeType = (mimeType) => {
   return filetype;
 };
 
-const getFileNameFromPath = (path) => {
-  const parts = path.split('\\');
-  return parts[parts.length - 1];
+const getLogoOptions = (filenames, screenSize, logoPath) => {
+  let options = {};
+  switch (true) {
+    case screenSize > 200 && screenSize < 640:
+      options = { filename: filenames[0], logo: logoPath, size: { w: 389, h: 100 } };
+      break;
+    case screenSize >= 640 && screenSize < 1024:
+      options = { filename: filenames[1], logo: logoPath, size: { w: 389, h: 100 } };
+      break;
+    case screenSize >= 1024 && screenSize < 1600:
+      options = { filename: filenames[2], logo: logoPath, size: { w: 389 * 2, h: 100 * 2 } };
+      break;
+    case screenSize >= 1600:
+      options = { filename: filenames[3], logo: logoPath, size: { w: 389 * 3, h: 100 * 3 } };
+      break;
+    default:
+      break;
+  }
+  return options;
 };
 
 module.exports = {
-  getFileNameFromPath,
+  getLogoOptions,
   formatFileName,
   getFileTypeByMimeType,
 };
