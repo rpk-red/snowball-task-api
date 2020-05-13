@@ -1,4 +1,3 @@
-// const sharp = require('sharp');
 const jimp = require('jimp');
 
 const path = require('path');
